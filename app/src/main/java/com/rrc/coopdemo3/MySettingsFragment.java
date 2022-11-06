@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.EditTextPreference;
+import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.SwitchPreferenceCompat;
@@ -52,14 +54,29 @@ public class MySettingsFragment extends PreferenceFragmentCompat {
         listener = new SharedPreferences.OnSharedPreferenceChangeListener() {
             @Override
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+                String toast = "";
                 if (key.equals("notifications")) {
-                    boolean are_notifications_enabled =  sharedPreferences.getBoolean(key, false);
-                    Toast.makeText(getActivity(), "notifications changed to: " + are_notifications_enabled, Toast.LENGTH_SHORT).show();
+                    boolean are_notifications_enabled = sharedPreferences.getBoolean(key, false);
+                    toast = "notifications changed to: " + are_notifications_enabled;
+                } else if (key.equals("list")) {
+                    String v = sharedPreferences.getString(key, "not set");
+                    toast = "List Preference changed to: " + v;
+                } else if (key.equals("seekbar")) {
+                    int v = sharedPreferences.getInt(key, 0);
+                    toast = "Volume set to: " + v;
                 }
+                Toast.makeText(getActivity(), toast, Toast.LENGTH_SHORT).show();
             }
         };
 
 
+        ListPreference listPreference = findPreference("list");
+        if (listPreference != null) {
+            CharSequence[] entries = {"Item 1", "Item 2"};
+            listPreference.setEntries(entries);
+            CharSequence[] values = {"1", "2"};
+            listPreference.setEntryValues(values);
+        }
 
     }
 

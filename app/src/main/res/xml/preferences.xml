@@ -38,6 +38,17 @@
             app:useSimpleSummaryProvider="true"
             app:isPreferenceVisible="false" />
 
+        <ListPreference
+            app:key="list"
+            app:title="List Preference"
+            app:useSimpleSummaryProvider="true" />
+
+        <SeekBarPreference
+            app:key="seekbar"
+            app:title="Volume"
+            android:max="100"
+            android:defaultValue="40" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>
