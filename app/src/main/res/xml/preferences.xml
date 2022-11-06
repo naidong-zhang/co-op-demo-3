@@ -3,12 +3,41 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <SwitchPreferenceCompat
-        app:key="notifications"
-        app:title="Enable message notifications" />
+    <PreferenceCategory
+        app:key="notifications_category"
+        app:title="Notifications">
 
-    <Preference
-        app:key="feedback"
-        app:title="Send feedback"
-        app:summary="Report technical issues or suggest new features" />
+        <SwitchPreferenceCompat
+            app:key="notifications"
+            app:title="Enable message notifications"/>
+
+        <Preference
+            app:key="webpage"
+            app:title="View webpage"
+            app:summary="start an intent" >
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="http://www.google.com" />
+        </Preference>
+
+        <Preference
+            app:key="webpage2"
+            app:title="View webpage 2"
+            app:summary="start an intent in preference click listener" />
+
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="help_category"
+        app:title="Help">
+
+        <EditTextPreference
+            app:key="signature"
+            app:title="Your signature"
+            app:useSimpleSummaryProvider="true"
+            app:isPreferenceVisible="false" />
+
+    </PreferenceCategory>
+
 </PreferenceScreen>
