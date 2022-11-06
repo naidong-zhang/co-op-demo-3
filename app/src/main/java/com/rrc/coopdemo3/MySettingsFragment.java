@@ -3,6 +3,7 @@ package com.rrc.coopdemo3;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.preference.EditTextPreference;
@@ -18,6 +19,14 @@ public class MySettingsFragment extends PreferenceFragmentCompat {
             EditTextPreference signaturePreference = findPreference("signature");
             if (signaturePreference != null) {
                 signaturePreference.setVisible(true);
+
+                signaturePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                    @Override
+                    public boolean onPreferenceChange(Preference preference, Object newValue) {
+                        Toast.makeText(getActivity(), "new signature is: " + newValue.toString(), Toast.LENGTH_SHORT).show();
+                        return true;
+                    }
+                });
             }
         }
 
