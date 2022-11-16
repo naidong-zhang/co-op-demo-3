@@ -14,7 +14,7 @@
         <Preference
             app:key="webpage"
             app:title="View webpage"
-            app:summary="start an intent" >
+            app:summary="start an intent from xml file" >
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="http://www.google.com" />
